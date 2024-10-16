@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; connect-src 'self' http://localhost:8080;">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styleDeleteWindow.css">
+
+    <title>To do list</title>
+</head>
+
+<body>
+
+    <div class="question">
+        <img src="../icons/question.png" alt="question">
+        <p>Confirmer la supression?</p>
+    </div>
+
+    <div class="box">
+        <button id="validateBtn">OK</button>
+        <button id="cancelBtn">Annuler</button>
+    </div>
+
+    <!-- JS -->
+    <script src="./rendererDeleteWindow.js"></script>
+
+</body>
+
+</html> 

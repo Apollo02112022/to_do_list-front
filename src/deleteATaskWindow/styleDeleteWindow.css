@@ -1,0 +1,43 @@
+body {
+    margin: 0%;
+    -webkit-app-region: drag;
+}
+
+.question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: small;
+    padding-top: 45px;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f8f4f4;
+    position: fixed;
+    bottom: 0;
+} 
+
+button {
+    width: 80px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin-top: 15px;
+    margin-bottom: 15px;
+} 
+
+#validateBtn, #cancelBtn {
+    font-size: small;
+    outline: none;
+    -webkit-app-region: no-drag;
+}
+
+#validateBtn:hover, #cancelBtn:hover {
+    background-color: rgb(164, 217, 244);
+    border: 1px solid blue;
+    transition: background-color 1s, border 1s;
+} 

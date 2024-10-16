@@ -1,0 +1,80 @@
+:root {
+    --background-color-1: #317AC1;
+    --background-color-2: #E1A624;
+    --background-color-3: #D4D3DC;
+    --background-color-4: #ffffff;
+    --color-1: #080808; 
+  }
+  
+body {
+    background-color: var(--background-color-1);
+    -webkit-app-region: drag;
+} 
+
+h1 {
+    text-align: center;
+    color: var(--color-1);
+    font-size: large;
+    font-style: italic;
+} 
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: flex-start;
+    gap: 5px;
+} 
+
+#title {
+    outline: none;
+    width: 200px;
+    background-color: var(--background-color-3);
+    border-radius: 5px; 
+    color: var(--color-1);
+    font-size: medium;
+    -webkit-app-region: no-drag;
+}
+
+#content {
+    outline: none;
+    width: 335px;
+    height: 75px;
+    background-color: var(--background-color-3);
+    border-radius: 5px;
+    resize: none;
+    overflow-y: scroll;
+    margin-top: 2px;
+    color: var(--color-1);
+    font-size: larger;
+    -webkit-app-region: no-drag;
+}
+
+.box2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+#createBtn, 
+#cancelBtn {
+    height: 25px;
+    width: 100px;
+    color: var(--color-1);
+    font-size: small;
+    background-color: var(--background-color-3);
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 10px;
+    -webkit-app-region: no-drag;
+  } 
+
+  #createBtn:hover {
+    background-color: var(--background-color-4);
+  } 
+
+  #cancelBtn:hover {
+    background-color: var(--background-color-4);
+  } 

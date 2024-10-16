@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; connect-src 'self' http://localhost:8080;">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styleCreateWindow.css">
+
+    <title>To do list</title>
+</head>
+
+<body>
+    <h1>Création d'une nouvelle tâche</h1>
+
+    <div class="box">
+        <label for="title">Titre</label>
+        <input id="title" type="text" name="taskTitle" />
+
+        <label for="content">Description</label>
+        <textarea id="content" name="taskContent" maxlength="250"></textarea>
+    </div>
+
+    <div class="box2">
+        <button id="createBtn">Créer</button>
+
+        <button id="cancelBtn">Annuler</button>
+    </div>
+
+    <script src="./rendererCreateWindow.js"></script>
+</body>
+
+</html> 
