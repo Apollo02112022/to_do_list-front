@@ -28,19 +28,43 @@ function displayDataOnHtmlPage(data) {
           const clonedTemplate = template?.cloneNode(true); 
           // Template customization.
           const title = clonedTemplate?.querySelector('.title');
-          title.textContent = item.title;
+          title.textContent = item.title; 
+          // Selection of toggle-switch status.
+          const toggleSwitch = clonedTemplate?.querySelector('.switch-input');
+          const toggleLabel = clonedTemplate?.querySelector('.switch-label');
+          // Use item id for toggle switch and label.
+          toggleSwitch.id = `switch-${item.id}`;
+          toggleLabel.setAttribute('for', `switch-${item.id}`);
+          // Application of initial state as a function of item.completed.
+          if (item.completed) {
+           toggleSwitch.checked = true; // If completed is true, the toggle is activated.
+           toggleLabel.style.backgroundColor = 'green'; // Green background if activated.
+          } else {
+           toggleSwitch.checked = false; // If false, toggle is disabled.
+           toggleLabel.style.backgroundColor = 'red'; // Red background if disabled.
+          }
+          //  Add an event listener to manage toggle-switch state changes.
+          toggleSwitch.addEventListener('change', (event) => {
+           if (event.target.checked) {
+            toggleLabel.style.backgroundColor = 'green'; // When activated, green background.
+            clonedTemplate.style.opacity = '0.5';
+           } else {
+            toggleLabel.style.backgroundColor = 'red'; // When activated, red background. 
+            clonedTemplate.style.opacity = '1';
+           }
+          });
           const content = clonedTemplate?.querySelector('.content');
           content.textContent = item.content; 
-        //   const readIcon = clonedTemplate?.querySelector('.readIcon');
-        //   readIcon.id = item.id;
-        //   readIcon.addEventListener('click', () => {
-        //   apiTask.electron.ipcRenderer.send('open-read-window', item.id);
-        //   });
-        //   const updateIcon = clonedTemplate.querySelector(".updateIcon");
-        //   updateIcon.id = item.id;
-        //   updateIcon.addEventListener("click", () => {
-        //   apiTask.electron.ipcRenderer.send("open-update-window", item.id);
-        //   });
+          const readIcon = clonedTemplate?.querySelector('.readIcon');
+          readIcon.id = item.id;
+          readIcon.addEventListener('click', () => {
+          apiTask.electron.ipcRenderer.send('open-read-window', item.id);
+          });
+          const updateIcon = clonedTemplate.querySelector(".updateIcon");
+          updateIcon.id = item.id;
+          updateIcon.addEventListener("click", () => {
+          apiTask.electron.ipcRenderer.send("open-update-window", item.id);
+          });
           const deleteIcon = clonedTemplate?.querySelector('.deleteIcon');
           deleteIcon.id = item.id;
           deleteIcon.addEventListener('click', () => {
@@ -74,7 +98,7 @@ async function displayAllData() {
 
   try {
       // Call the asynchronous displayAllTasks() function to retrieve data.
-      const rows = await apiTask.electron.displayAllTasks(); 
+      const rows = await apiTask.displayAllTasks(); 
 
       if (rows.length > 0) { // Check if the retrieved data is not empty.
           // Displaying data retrieved from the HTML page.

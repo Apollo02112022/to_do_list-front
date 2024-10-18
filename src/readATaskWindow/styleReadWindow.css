@@ -1,0 +1,81 @@
+:root {
+    --background-color-1: #317AC1;
+    --background-color-2: #E1A624;
+    --background-color-3: #D4D3DC; 
+    --background-color-4: #ffffff;
+    --color-1: #080808; 
+}
+
+body {
+    background-color: var(--background-color-1);
+    margin: 0%;
+    -webkit-app-region: drag;
+  }
+  
+  h1 {
+    text-align: center;
+    color: var(--color-1);
+    font-size: large;
+    font-style: italic;
+  }
+  
+  #container {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: start;
+  }
+
+  .box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #title {
+    font-weight: bold;
+  }
+
+  #title, 
+  #content {
+    color: var(--color-1);
+    margin-left: 15px;
+  }
+
+  #date {
+    color: var(--color-1);
+  }
+  
+  .date {
+    margin-left: 15px;
+  }
+
+  .footer {
+    position: fixed;
+    width: 100%;
+    bottom: 15px;
+  }
+
+  .box2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #closeBtn {
+    height: 25px;
+    width: 75px;
+    color: var(--color-1);
+    font-size: small;
+    background-color: var(--background-color-3);
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    -webkit-app-region: no-drag;
+  }
+  
+  #closeBtn:hover {
+    background-color: var(--background-color-4);
+  }
+  

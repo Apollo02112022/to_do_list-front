@@ -6,6 +6,8 @@ const { deleteATask } = require("./operation");
 let mainWindow = null;
 let taskWindow = null; 
 let currentId = null;
+let readWindow = null;
+let updateWindow = null; 
 let deleteWindow = null;
 
 /**
@@ -88,9 +90,88 @@ ipcMain.on("page-refresh", () => {
   mainWindow.webContents.reload();
 });
 
+
 // Obtain task id.
 ipcMain.on("get-id", (event) => {
   event.returnValue = currentId;
+}); 
+
+/**
+ * Window for reading a task.
+ */
+function readATaskWindow() {
+  readWindow = new BrowserWindow({
+    width: 400,
+    height: 250,
+    // frame: false,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.join(__dirname, "preload.js"),
+    },
+  });
+  readWindow.loadFile("src/readATaskWindow/indexReadWindow.html");
+   readWindow.webContents.openDevTools();
+}
+
+// Open read window.
+ipcMain.on("open-read-window", (event, arg) => {
+  if (readWindow === null || readWindow.isDestroyed()) {
+    readATaskWindow();
+    currentIdReadWindow = arg;
+    console.log("Read window open.");
+    console.log(arg);
+  } else {
+    console.log("Read window is already open.");
+  }
+}); 
+
+// Close read window.
+ipcMain.on("close-read-window", () => {
+  if (readWindow) {
+    readWindow.close();
+    readWindow = null;
+    console.log("Read window closed.");
+  }
+});
+
+/**
+ * Window for updating a task.
+ */
+function updateATaskWindow() {
+  updateWindow = new BrowserWindow({
+    width: 400,
+    height: 250,
+    frame: false,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.join(__dirname, "preload.js"),
+    },
+  });
+  updateWindow.loadFile("src/updateATaskWindow/indexUpdateWindow.html");
+  //  updateWindow.webContents.openDevTools();
+}
+
+// Open update window.
+ipcMain.on("open-update-window", (event, arg) => {
+  if (updateWindow === null || updateWindow.isDestroyed()) {
+    updateATaskWindow();
+    currentId = arg;
+    console.log("Update window open.");
+    console.log(arg);
+  } else {
+    console.log("Update window is already open.");
+  }
+}); 
+
+// Close update window.
+ipcMain.on("close-update-window", () => {
+  if (updateWindow) {
+    updateWindow.close();
+    updateWindow = null;
+    console.log("Update window closed.");
+  }
 });
 
 /**
@@ -100,7 +181,7 @@ function deleteATaskWindow() {
   deleteWindow = new BrowserWindow({
     width: 230,
     height: 170,
-    // frame: false,
+    frame: false,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
@@ -108,7 +189,7 @@ function deleteATaskWindow() {
     },
   });
   deleteWindow.loadFile("src/deleteATaskWindow/indexDeleteWindow.html");
-   deleteWindow.webContents.openDevTools();
+  //  deleteWindow.webContents.openDevTools();
 }
 
 // Open delete window.
@@ -136,11 +217,9 @@ ipcMain.on("delete-task", async (event, id) => {
       }
     } else {
       console.error("Task deletion was not successful:", deleteResult.error);
-      // mainWindow.webContents.send("show-popup-delete-task", "Alert deletion failed.");
     }
   } catch (error) {
     console.error("Error deleting task:", error);
-    // mainWindow.webContents.send("show-popup-delete-task", "Error when deleting alert.");
   }
 });
 

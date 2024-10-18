@@ -1,141 +1,171 @@
 :root {
-    --background-color-1: #317AC1;
-    --background-color-2: #E1A624;
-    --background-color-3: #D4D3DC; 
-    --background-color-4: #ffffff;
-    --color-1: #080808; 
-  }
-  
+  --background-color-1: #317AC1;
+  --background-color-2: #E1A624;
+  --background-color-3: #D4D3DC;
+  --background-color-4: #ffffff;
+  --color-1: #080808;
+}
+
 body {
-    background-color: var(--background-color-1);
-} 
+  background-color: var(--background-color-1);
+}
 
 h1 {
-    text-align: center;
-    color: var(--color-1);
-    font-style: italic;
+  text-align: center;
+  color: var(--color-1);
+  font-style: italic;
 }
 
 .contentBody {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .task {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: var(--color-1);
-    font-size: 1.4em;
-    text-align: center;
-    margin-top: 5px;
-  }
-  
-  .underlining {
-    width: 125px;
-    border: 1px solid var(--color-1);
-    border-bottom: 0;
-    margin-top: 5px;
-    margin-bottom: 15px;
-  }
-  
-  .box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    max-height: 350px;
-  }
-  
-  #noTask {
-    color: var(--color-1);
-    text-align: center;
-  }
-  
-  #box2 {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    height: 60px;
-    background-color: var(--background-color-2);
-    border-radius: 5px;
-    padding: 5px;
-    margin-bottom: 10px;
-  } 
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--color-1);
+  font-size: 1.4em;
+  text-align: center;
+  margin-top: 5px;
+}
 
-  .title, .completed {
-    margin-top: 0;
-    margin-bottom: 5px;
-  }
+.underlining {
+  width: 125px;
+  border: 1px solid var(--color-1);
+  border-bottom: 0;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
 
-  .box3 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  max-height: 350px;
+}
 
-  .completed {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: red;
-  }
-  
-  .box4 {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .readIcon,
-  .updateIcon,
-  .deleteIcon {
-    cursor: pointer;
-    opacity: 0.7;
-  }
-  
-  .readIcon:hover,
-  .updateIcon:hover,
-  .deleteIcon:hover {
-    opacity: 1;
-  }  
+#noTask {
+  color: var(--color-1);
+  text-align: center;
+}
 
-  .content {
-    margin-top: 0;
-    margin-bottom: 5px;
-    font-size: small;
-    word-break: break-all;
-  }  
+#box2 {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 60px;
+  background-color: var(--background-color-2);
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
 
-  ::-webkit-scrollbar {
-    display: none;
-  }
+.title,
+.completed {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
 
-  #data-container {
-    overflow-y: scroll;
-  }
-  
-  #display {
-    display: none;
-  }  
+.box3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
 
-  #taskBtn {
-    height: 25px;
-    width: 150px;
-    color: var(--color-1);
-    font-size: small;
-    background-color: var(--background-color-3);
-    border-radius: 5px;
-    cursor: pointer;
-    outline: none;
-    margin-top: 10px;
-  }
-  
-  #taskBtn:hover {
-    background-color: var(--background-color-4);
-  }
-  
+.completed {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 10px;
+  margin-right: 10px;
+}
+
+.switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-label {
+  position: absolute;
+  border-radius: 34px;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.switch-label::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--background-color-3);
+  transition: transform 0.3s;
+}
+
+.switch-input:checked + .switch-label::before {
+  transform: translateX(10px);
+}
+
+.box4 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+}
+
+.readIcon,
+.updateIcon,
+.deleteIcon {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.readIcon:hover,
+.updateIcon:hover,
+.deleteIcon:hover {
+  opacity: 1;
+}
+
+.content {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: small;
+  word-break: break-all;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#data-container {
+  overflow-y: scroll;
+}
+
+#display {
+  display: none;
+}
+
+#taskBtn {
+  height: 25px;
+  width: 150px;
+  color: var(--color-1);
+  font-size: small;
+  background-color: var(--background-color-3);
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 10px;
+}
+
+#taskBtn:hover {
+  background-color: var(--background-color-4);
+} 

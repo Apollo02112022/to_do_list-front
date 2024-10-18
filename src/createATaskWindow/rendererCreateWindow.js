@@ -3,7 +3,7 @@ createBtn.addEventListener('click', () => {
   apiTask.electron.ipcRenderer.send('add-new-task'); 
   let title = document.getElementById('title').value;
   let content = document.getElementById('content').value;  
-  apiTask.electron.createATask(title, content);
+  apiTask.createATask(title, content);
   apiTask.electron.ipcRenderer.send('close-create-window'); 
 }); 
 

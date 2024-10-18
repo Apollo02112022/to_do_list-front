@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./styleUpdateWindow.css">
+
+    <title>To do list</title>
+</head>
+
+<body>
+
+    <h1>Modification de la tâche</h1>
+
+    <div id="container">
+
+        <div class="box">
+
+            <p id="title"></p>
+
+            <span class="completed"></span>
+
+        </div>
+
+        <p id="content"></p>
+
+    </div>
+
+    <div class="footer">
+
+        <p id="date">Tâche créée le : <span id="date"></p>
+
+        <div class="box2">
+
+            <button id="confirmBtn">Valider</button>
+
+            <button id="closeBtn">Fermer</button>
+
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="./rendererUpdateWindow.js"></script>
+
+</body>
+
+</html> 

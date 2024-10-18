@@ -28,6 +28,7 @@ button {
     border: 1px solid grey;
     margin-top: 15px;
     margin-bottom: 15px;
+    cursor: pointer;
 } 
 
 #validateBtn, #cancelBtn {
