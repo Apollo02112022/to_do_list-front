@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; connect-src 'self' http://localhost:8080;">
 
     <!-- CSS -->
     <link rel="stylesheet" href="./styleUpdateWindow.css">
@@ -19,19 +20,21 @@
 
         <div class="box">
 
-            <p id="title"></p>
+            <label for="title" class="title">Titre</label>
+            <input id="title" type="text" name="taskTitle" />
 
-            <span class="completed"></span>
+            <!-- <span class="completed"></span> -->
 
         </div>
 
-        <p id="content"></p>
+        <label for="content" class="content">Description</label>
+        <textarea id="content" name="taskContent" maxlength="250"></textarea>
 
     </div>
 
     <div class="footer">
 
-        <p id="date">Tâche créée le : <span id="date"></p>
+        <p class="date">Tâche créée le : <span id="date"></p>
 
         <div class="box2">
 

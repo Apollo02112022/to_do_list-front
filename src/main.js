@@ -1,7 +1,7 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('node:path') 
 const { ipcMain } = require('electron');
-const { deleteATask } = require("./operation");
+const { deleteATask, displayATask } = require("./operation");
 
 let mainWindow = null;
 let taskWindow = null; 
@@ -30,7 +30,7 @@ const createWindow = () => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.webContents.send('create-custom-buttons')
   })
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {
@@ -103,7 +103,7 @@ function readATaskWindow() {
   readWindow = new BrowserWindow({
     width: 400,
     height: 250,
-    // frame: false,
+    frame: false,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
@@ -111,14 +111,14 @@ function readATaskWindow() {
     },
   });
   readWindow.loadFile("src/readATaskWindow/indexReadWindow.html");
-   readWindow.webContents.openDevTools();
+  // readWindow.webContents.openDevTools();
 }
 
 // Open read window.
 ipcMain.on("open-read-window", (event, arg) => {
   if (readWindow === null || readWindow.isDestroyed()) {
+    currentId = arg;
     readATaskWindow();
-    currentIdReadWindow = arg;
     console.log("Read window open.");
     console.log(arg);
   } else {
@@ -150,7 +150,7 @@ function updateATaskWindow() {
     },
   });
   updateWindow.loadFile("src/updateATaskWindow/indexUpdateWindow.html");
-  //  updateWindow.webContents.openDevTools();
+  // updateWindow.webContents.openDevTools();
 }
 
 // Open update window.
@@ -164,6 +164,14 @@ ipcMain.on("open-update-window", (event, arg) => {
     console.log("Update window is already open.");
   }
 }); 
+
+ipcMain.on("update-task", () => {
+  if (updateWindow) {
+    updateWindow.close();
+    updateWindow = null;
+    console.log("Task updated and update window closed.");
+  }
+});
 
 // Close update window.
 ipcMain.on("close-update-window", () => {
@@ -189,7 +197,7 @@ function deleteATaskWindow() {
     },
   });
   deleteWindow.loadFile("src/deleteATaskWindow/indexDeleteWindow.html");
-  //  deleteWindow.webContents.openDevTools();
+  // deleteWindow.webContents.openDevTools();
 }
 
 // Open delete window.

@@ -16,7 +16,7 @@ const operation = require('./operation.js');
     createATask: (title, content) => operation.createATask(title, content),
     displayAllTasks: () => operation.displayAllTasks(),
     displayATask: (id) => operation.displayATask(id),
-    // updateATask: (id, title, content) => operation.updateATask(id, title, content),
+    updateATask: (id, title, content) => operation.updateATask(id, title, content),
     // deleteAllTasks: () => operation.deleteAllTasks,
     deleteATask: (id) => operation.deleteATask(id) 
   }); 

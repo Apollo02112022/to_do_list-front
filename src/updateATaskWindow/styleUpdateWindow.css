@@ -1,60 +1,85 @@
 :root {
-    --background-color-1: #317AC1;
-    --background-color-2: #E1A624;
-    --background-color-3: #D4D3DC; 
-    --background-color-4: #ffffff;
-    --color-1: #080808; 
+  --background-color-1: #317AC1;
+  --background-color-2: #E1A624;
+  --background-color-3: #D4D3DC; 
+  --background-color-4: #ffffff;
+  --color-1: #080808; 
 }
 
 body {
-    background-color: var(--background-color-1);
-    margin: 0%;
-    -webkit-app-region: drag;
-  }
-  
-  h1 {
-    text-align: center;
-    color: var(--color-1);
-    font-size: large;
-    font-style: italic;
-  }
-  
-  #container {
-    display: flex;
-    flex-direction: column;
-    justify-content:space-around;
-    align-items: center;
-  }
+  background-color: var(--background-color-1);
+  margin: 0%;
+  -webkit-app-region: drag;
+}
 
-  .box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
+h1 {
+  text-align: center;
+  color: var(--color-1);
+  font-size: large;
+  font-style: italic;
+}
 
-  #title, 
-  #content,
-  #date {
-    color: var(--color-1);
-  }
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: start; 
+  margin-left: 15px;
+}
 
-  #date {
-    margin-left: 15px;
-  }
-  
-  .footer {
-    position: fixed;
-    width: 100%;
-    bottom: 15px;
-  } 
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
 
-  .box2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-  }
+.title,
+.content {
+  font-weight: bold;
+}
+
+#title {
+  width: 125px;
+  border-radius: 5px;
+  outline: none;
+  color: var(--color-1); 
+  -webkit-app-region: no-drag;
+}
+
+.content {
+  margin-bottom: 5px;
+}
+
+#content {
+  border-radius: 5px;
+  outline: none;
+  color: var(--color-1); 
+  -webkit-app-region: no-drag;
+}
+
+#date {
+  color: var(--color-1);
+}
+
+.date {
+  margin-left: 15px;
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 15px;
+}
+
+.box2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
   
   #confirmBtn,
   #closeBtn {
