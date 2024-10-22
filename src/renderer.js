@@ -48,11 +48,24 @@ function displayDataOnHtmlPage(data) {
            if (event.target.checked) {
             toggleLabel.style.backgroundColor = 'green'; // When activated, green background.
             clonedTemplate.style.opacity = '0.5';
+            readIcon.style.pointerEvents = 'none';
+            updateIcon.style.pointerEvents = 'none';
+            deleteIcon.style.pointerEvents = 'none';
+            readIcon.style.cursor = 'not-allowed';
+            updateIcon.style.cursor = 'not-allowed';
+            deleteIcon.style.cursor = 'not-allowed';
            } else {
             toggleLabel.style.backgroundColor = 'red'; // When activated, red background. 
             clonedTemplate.style.opacity = '1';
+            readIcon.style.pointerEvents = 'auto';
+            updateIcon.style.pointerEvents = 'auto';
+            deleteIcon.style.pointerEvents = 'auto';
+            readIcon.style.cursor = 'pointer';
+            updateIcon.style.cursor = 'pointer';
+            deleteIcon.style.cursor = 'pointer';
            }
           });
+
           const content = clonedTemplate?.querySelector('.content');
           content.textContent = item.content; 
           const readIcon = clonedTemplate?.querySelector('.readIcon');
