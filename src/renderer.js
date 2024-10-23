@@ -24,6 +24,7 @@ function displayDataOnHtmlPage(data) {
           noTask.style.display = 'none';
       }
       data.forEach(item => {
+          let deleteTimeout;
           // Template cloning.
           const clonedTemplate = template?.cloneNode(true); 
           // Template customization.
@@ -53,7 +54,12 @@ function displayDataOnHtmlPage(data) {
             deleteIcon.style.pointerEvents = 'none';
             readIcon.style.cursor = 'not-allowed';
             updateIcon.style.cursor = 'not-allowed';
-            deleteIcon.style.cursor = 'not-allowed';
+            deleteIcon.style.cursor = 'not-allowed'; 
+            // Use a delay before deleting the task.
+            deleteTimeout = setTimeout(() => {
+                apiTask.deleteATask(item.id);
+                apiTask.electron.ipcRenderer.send("page-refresh");
+            }, 60000); // 60000 ms = 60 seconds delay before deletion.
            } else {
             toggleLabel.style.backgroundColor = 'red'; // When activated, red background. 
             clonedTemplate.style.opacity = '1';
@@ -62,10 +68,11 @@ function displayDataOnHtmlPage(data) {
             deleteIcon.style.pointerEvents = 'auto';
             readIcon.style.cursor = 'pointer';
             updateIcon.style.cursor = 'pointer';
-            deleteIcon.style.cursor = 'pointer';
+            deleteIcon.style.cursor = 'pointer'; 
+            // Cancellation of setTimeout if the user presses the toggle-switch again before execution.
+            clearTimeout(deleteTimeout);
            }
           });
-
           const content = clonedTemplate?.querySelector('.content');
           content.textContent = item.content; 
           const readIcon = clonedTemplate?.querySelector('.readIcon');
