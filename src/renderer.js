@@ -1,3 +1,8 @@
+const closeBtn = document.getElementById('icon');
+closeBtn.addEventListener('click', () => {
+  apiTask.electron.ipcRenderer.send('close-main-window');
+}); 
+
 const taskBtn = document.getElementById('taskBtn');
 taskBtn.addEventListener('click', () => {
   apiTask.electron.ipcRenderer.send('open-create-window');

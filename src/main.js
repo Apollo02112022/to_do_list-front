@@ -17,7 +17,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 300,
     height: 515,
-    // frame: false,
+    frame: false,
     autoHideMenuBar: true,
     webPreferences: {
       sandbox:false,
@@ -42,7 +42,14 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
-})
+}) 
+
+// Close main window. 
+ipcMain.on('close-main-window', () => {
+  mainWindow.destroy();
+  mainWindow = null;
+  console.log('Main window closed.');
+}); 
 
 /**
  * Window for creating a new task.
@@ -58,6 +65,8 @@ function createATaskWindow () {
       preload: path.join(__dirname, "preload.js"),
     }
   });
+  taskWindow.setResizable(false);
+  taskWindow.setMaximizable(false);
   taskWindow.loadFile('src/createATaskWindow/indexCreateWindow.html');
   // taskWindow.webContents.openDevTools()
 } 
@@ -110,6 +119,8 @@ function readATaskWindow() {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+  readWindow.setResizable(false);
+  readWindow.setMaximizable(false);
   readWindow.loadFile("src/readATaskWindow/indexReadWindow.html");
   // readWindow.webContents.openDevTools();
 }
@@ -148,7 +159,9 @@ function updateATaskWindow() {
       nodeIntegration: true,
       preload: path.join(__dirname, "preload.js"),
     },
-  });
+  }); 
+  updateWindow.setResizable(false);
+  updateWindow.setMaximizable(false);
   updateWindow.loadFile("src/updateATaskWindow/indexUpdateWindow.html");
   // updateWindow.webContents.openDevTools();
 }
@@ -196,6 +209,8 @@ function deleteATaskWindow() {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+  deleteWindow.setResizable(false);
+  deleteWindow.setMaximizable(false);
   deleteWindow.loadFile("src/deleteATaskWindow/indexDeleteWindow.html");
   // deleteWindow.webContents.openDevTools();
 }
