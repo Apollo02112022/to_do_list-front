@@ -11,8 +11,10 @@ async function readATask(id) {
   title.value = readResult.title;
   const content = document.getElementById("content");
   content.textContent = readResult.content;
+  let arr = readResult.createdAt.split("-");
+  let reversedStr = `${arr[2]}-${arr[1]}-${arr[0]}`;
   const date = document.getElementById("date");
-  date.textContent = readResult.createdAt;
+  date.textContent = reversedStr;
 }
 
 readATask(idFromMain); 
